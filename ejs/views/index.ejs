@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+	<script src="jquery-1.7.2.min.js"></script>
+	<script src="ejs.min.js"></script>
+
+	<script id="tasks-tpl" type="text/template">
+		<% if (tasks.length) { %>
+  			<ul>
+    		<% tasks.forEach(function(task){ %>
+      			<li><%= task %></li>
+    		<% }) %>
+  			</ul>
+		<% } %>
+	</script>
+
+	<script>
+		$(function () {
+			var tpl = $('#tasks-tpl').html();
+			$('#test').html(require('ejs').render(tpl, { tasks : ['t1', 't2'] }));
+		});
+	</script>
+	
+</head>
+<body>
+	<div id="test"></div>
+	<p><@= message @></p>
+</body>
+</html>

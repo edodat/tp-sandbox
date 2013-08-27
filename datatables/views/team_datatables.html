@@ -1,0 +1,93 @@
+{% extends 'layout.html' %}
+
+{% block title %}Team backlog{% endblock %}
+
+{% block head_css_include %}
+	{% parent %}
+	<link rel="stylesheet" href="/css/jquery.dataTables.css">
+	<link rel="stylesheet" href="/css/jquery.dataTables_themeroller.css">
+	<link rel="stylesheet" href="/css/TableTools.css">
+	<link rel="stylesheet" href="/css/TableTools_JUI.css">
+{% endblock %}
+
+{% block head_js_include %}
+	{% parent %}
+	<script src="/js/lib/jquery.dataTables.min.js"></script>
+	<script src="/js/lib/jquery.dataTables.rowReordering.js"></script>
+	<script src="/js/lib/TableTools.min.js"></script>
+{% endblock %}
+
+{% block head_js %}
+	<script>
+	
+	// INITIALIZE CONTEXT VARIABLES
+	var context = {
+			team : {% if team %}{{ team|json_encode|raw }}{% else %}null{% endif %},
+			user :  {% if user %}{{ user|json_encode|raw }}{% else %}{}{% endif %},
+			io_server_path : '{{ io_server_path }}'
+	}
+
+	$(function() {
+		
+		$('#team_selector').change(function(event){
+			window.location.href = '/team/'+$("#team_selector option:selected").attr('value')+'.html';
+		});
+		
+		{% if team  %}
+		$('#backlog').dataTable({
+			'bProcessing': true, // displays processing indicator
+	        'sAjaxSource': '/team/{{ team._id }}/backlog',
+	        'sAjaxDataProp': '', // reads AJAX return as an array of objects
+	        'aoColumns': [
+	                      { 'mData': '_id' },
+	                      { 'mData': 'title' },
+	                      { 'mData': 'description' },
+	                      { 'mData': 'estimation' }
+			],
+			'bDeferRender': true, // deferred rendering
+			'sDom': '<"H"Tlfr>t<"F"ip>', // elements positioning
+			'oTableTools': {
+				'sSwfPath': '/swf/copy_csv_xls_pdf.swf',
+				'aButtons': ['copy', 'print', 'xls', 'pdf' ]
+			},
+	        'bJQueryUI': true,
+	        'bPaginate': false,
+	        'bSort': false,
+	        'bInfo': false
+	    }).rowReordering();
+		{% endif %}
+		
+	});
+
+	</script>
+{% endblock %}
+
+{% block content %}
+
+	<h1>Team
+	<select id="team_selector">
+		{% if not team %}<option value="">Choose a team</option>{% endif %}
+		{% for t in teams %}
+			<option value="{{ t._id }}" {% if team %}{% if t._id|json_encode == team._id|json_encode %} selected="selected" {% endif %}{% endif %}>{{ t.name }}</option>
+		{% endfor %}		
+	</select>	
+	</h1>
+
+	{% if team  %}
+	<table id="backlog">
+		<thead>
+	        <tr>
+	            <th>ID</th><th>Title</th><th>Description</th><th>Estimation</th>
+	        </tr>
+    	</thead>
+    	<tbody>
+		{% for task in team.backlog %}
+			<tr class="task" id="{{ task }}" title="{{ task }}">
+			<td>{{ task }}</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+	{% endif %}
+
+{% endblock %}

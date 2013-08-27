@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	
+	<script src="/js/lib/jquery-1.7.2.min.js"></script>
+	<script>
+	
+	$(document).ready(function() {
+	
+		$('#getall_button').click(function(event){
+			$.ajax({
+	 			url: '/items',
+	 			type: 'GET'
+	 		}).done(function(data){
+				console.log('GET OK :', data);
+	 		});	
+		});
+
+		$('#get_button').click(function(event){
+			$.ajax({
+	 			url: '/item/3',
+	 			type: 'GET'
+	 		}).done(function(data){
+				console.log('GET OK :', data);
+	 		});	
+		});
+
+		$('#post_button').click(function(event){
+			$.ajax({
+	 			url: '/item',
+	 			type: 'POST',
+	 			data: {name : 'grapes'}
+	 		}).done(function(data){
+				console.log('POST OK :', data);
+	 		});	
+		});
+
+		$('#put_button').click(function(event){
+			$.ajax({
+	 			url: '/item/2',
+	 			type: 'PUT',
+	 			data: {name : 'pineapple'}
+	 		}).done(function(data){
+				console.log('PUT OK :', data);
+	 		});	
+		});
+
+		$('#delete_button').click(function(event){
+			$.ajax({
+	 			url: '/item/1',
+	 			type: 'DELETE'
+	 		}).done(function(data){
+				console.log('DELETE OK :', data);
+	 		});	
+		});
+
+	});
+	
+	</script>
+	
+</head>
+<body>
+	<button id="getall_button">GET ALL</button>
+	<button id="get_button">GET #3</button>
+	<button id="post_button">POST</button>
+	<button id="put_button">PUT #2</button>
+	<button id="delete_button">DELETE #1</button>
+</body>
+</html>

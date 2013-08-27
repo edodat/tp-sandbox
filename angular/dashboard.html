@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Dashboard</title>
+	
+	<link href="static/styles/lib/jquery-ui/jquery-ui-1.8.21.custom.css" rel="stylesheet" media="screen">
+	<link href="static/styles/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<script src="static/js/lib/jquery-1.7.2.min.js"></script>
+	<script src="static/js/lib/jquery-ui-1.8.21.custom.min.js"></script>
+	<script src="static/js/lib/jquery.masonry.min.js"></script>
+	<script src="static/js/lib/angular.min.js"></script>
+	<script src="static/js/lib/bootstrap.min.js"></script>
+	
+	<link href="static/styles/dashboard.css" rel="stylesheet" media="screen">
+
+	<script>
+	$(function() {
+	    $( ".column" ).sortable({
+	        connectWith: ".column"
+	    });
+	
+	    $( ".widget" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+	        .find( ".widget-header" )
+	            .addClass( "ui-widget-header ui-corner-all" )
+	            .prepend( "<span class='ui-icon ui-icon-minusthick'></span>")
+	            .end()
+	        .find( ".widget-content" );
+	
+	    $( ".widget-header .ui-icon" ).click(function() {
+	        $( this ).toggleClass( "ui-icon-minusthick" ).toggleClass( "ui-icon-plusthick" );
+	        $( this ).parents( ".widget:first" ).find( ".widget-content" ).toggle();
+	    });
+	
+	    $( ".column" ).disableSelection();
+	});
+	</script>
+	
+
+</head>
+<body>
+	<h2>Dashboard</h2>
+
+	<div class="column">
+	    <div class="widget">
+	        <div class="widget-header">Feeds</div>
+	        <div class="widget-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit Lorem ipsum dolor sit amet, consectetuer adipiscing elit Lorem ipsum dolor sit amet, consectetuer adipiscing elit Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
+	    </div>
+	    <div class="widget">
+	        <div class="widget-header">News</div>
+	        <div class="widget-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
+	    </div>
+ 	</div>
+	 
+	<div class="column">
+	    <div class="widget">
+	        <div class="widget-header">Shopping</div>
+	        <div class="widget-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit Lorem ipsum dolor sit amet, consectetuer adipiscing elit Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
+	    </div>
+ 	</div>
+	 
+	<div class="column">
+	    <div class="widget">
+	        <div class="widget-header">Links</div>
+	        <div class="widget-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
+	    </div>
+	    <div class="widget">
+	        <div class="widget-header">Images</div>
+	        <div class="widget-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
+	    </div>
+	</div>
+ 
+</body>
+</html>
+

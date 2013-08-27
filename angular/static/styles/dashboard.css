@@ -1,0 +1,8 @@
+@CHARSET "ISO-8859-1";
+.column { width: 170px; float: left; padding-bottom: 100px; }
+.widget { margin: 0 1em 1em 0; }
+.widget-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; }
+.widget-header .ui-icon { float: right; }
+.widget-content { padding: 0.4em; }
+.ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
+.ui-sortable-placeholder * { visibility: hidden; }

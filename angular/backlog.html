@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Backlog</title>
+	
+	<link href="static/styles/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+<body>
+	<h2>Backlog</h2>
+	
+	<div ng-controller="BacklogCtrl" class="well">
+	
+		<input type="text" ng-model="search" class="search-query" placeholder="Search"/>
+		
+		<ul id="backlog">
+			<li ng-repeat="task in tasks | filter:search" class="task">
+				<span>{{task.title}}</span>
+			</li>
+		</ul>
+		
+		<form name="createTaskForm" ng-submit="addTask()" class="form-inline">
+	    	<input type="text" ng-model="formTaskTitle" size="30" placeholder="add new task here" required/>
+	        <button type="submit" ng-disabled="createTaskForm.$invalid" class="btn btn-primary"><i class="icon-th-list icon-white"></i> Add</button>
+		</form>
+		
+	</div>
+
+	<h2>Project</h2>
+	
+	<div ng-controller="ProjectCtrl" class="well">
+	
+		<input type="text" ng-model="search" class="search-query" placeholder="Search"/>
+		
+		<ul id="project">
+			<li ng-repeat="task in tasks | filter:search" class="task">
+				<span>{{task.title}}</span>
+			</li>
+		</ul>
+		
+		<form name="createTaskForm" ng-submit="addTask()" class="form-inline">
+	    	<input type="text" ng-model="formTaskTitle" size="30" placeholder="add new task here" required/>
+	        <button type="submit" ng-disabled="createTaskForm.$invalid" class="btn btn-primary"><i class="icon-th-list icon-white"></i> Add</button>
+		</form>
+		
+	</div>
+
+
+
+	<script src="static/js/lib/jquery-1.7.2.min.js"></script>
+	<script src="static/js/lib/jquery-ui-1.8.21.custom.min.js"></script>
+	<script src="static/js/lib/angular.min.js"></script>
+	<script src="static/js/lib/bootstrap.min.js"></script>
+	
+	<script src="static/js/backlog.js"></script>
+
+</body>
+</html>
+
