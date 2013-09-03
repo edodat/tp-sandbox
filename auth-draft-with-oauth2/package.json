@@ -1,0 +1,14 @@
+{
+    "name": "auth-server",
+    "description": "Authorization server",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "express": "3.x",
+        "swig": "1.x.x",
+        "passport": "0.1.17",
+        "oauth2orize": "0.x.x",
+        "passport-local": "0.1.x",
+        "connect-ensure-login": "0.1.x"
+    }
+}
