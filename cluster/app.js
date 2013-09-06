@@ -1,9 +1,10 @@
-// Generate random errors
-if (Math.floor(Math.random() * 4) < 3) {
+// Generate random errors to test respawn by cluster master process
+/*if (Math.floor(Math.random() * 4) < 3) {
     console.log('Error for ' + process.pid)
     sdfsdf();
-}
+}*/
 
-require('http').createServer().listen(process.env.PORT || 80, function(){
-    console.log('Server listening on port ' + (process.env.PORT || 80));
+var server = require('http').createServer();
+server.listen(process.env.PORT || 80, function(){
+    console.log('Server listening on port ' + server.address().port);
 });
