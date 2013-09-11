@@ -4,7 +4,7 @@ var User = require('./user.js'),
 // constructor
 function AdminUser(name){
     // call parent constructor
-    User.call(this, name);
+    AdminUser.super_.call(this, name);
 
     this.role = 'admin';
 }
@@ -14,7 +14,7 @@ util.inherits(AdminUser, User);
 
 // override
 AdminUser.prototype.printName = function() {
-    console.log(this.name + ' [admin]');
+    console.log(this.name + ' /' + this.printRole());
 }
 
 // export class
