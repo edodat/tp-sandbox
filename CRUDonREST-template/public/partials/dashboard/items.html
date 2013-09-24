@@ -1,0 +1,50 @@
+<h2 class="panel-title">Items</h2>
+
+<!-- Add Item button -->
+<button class="btn btn-default" ng-click="addItem()">
+    <i class="icon-plus-sign"></i> Add item
+</button>
+
+<!-- Edit Item modal -->
+<script type="text/ng-template" id="editItem.html">
+    <div class="modal-header">
+        <h3>Item details</h3>
+    </div>
+    <div class="modal-body">
+        <form name="editItemForm" novalidate>
+            <div class="form-group" ng-class="{error: editItemForm.name.$dirty && editItemForm.name.$invalid}">
+                <input name="name" type="text" class="form-control" placeholder="Enter name" ng-model="item.name" required />
+                <span ng-show="editItemForm.name.$dirty && editItemForm.name.$error.required" class="help-inline">Required</span>
+            </div>
+            <div class="form-group" ng-class="{error: editItemForm.description.$invalid}">
+               <input name="description" type="text" class="form-control" placeholder="Enter description" ng-model="item.description" />
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-sm btn-primary" ng-click="save()" ng-disabled="editItemForm.$invalid">Save</button>
+        <button class="btn btn-sm btn-link" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+
+<!-- Items list -->
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in items" id="{{ item._id }}" title="{{ item._id }}">
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
+        <td>
+            <button class="btn btn-sm btn-default" ng-click="editItem(item)"><i class="icon-edit"></i> Edit</button>
+            <button class="btn btn-sm btn-danger" ng-click="removeItem(item)"><i class="icon-trash"></i> Delete</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
