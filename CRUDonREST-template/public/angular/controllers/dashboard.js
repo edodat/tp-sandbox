@@ -2,10 +2,9 @@
 
 angular.module('app').controller('ItemsCtrl', function($scope, $modal, Restangular){
     $scope.Items = Restangular.all('items');
-
-    function load () {
-        $scope.items = $scope.Items.getList();
-    }
+    $scope.Items.getList().then(function(items) {
+        $scope.items = items;
+    });
 
     function openModal (item) {
         var modalInstance = $modal.open({
@@ -20,12 +19,16 @@ angular.module('app').controller('ItemsCtrl', function($scope, $modal, Restangul
         modalInstance.result.then(function (item) {
             if (item._id){
                 // update existing one
-                return item.put();
+                item.put().then(function(){
+                    $scope.items[_.findIndex($scope.items, { '_id': item._id })] = item;
+                });
             } else {
                 // create new one
-                return $scope.Items.post(item);
+                $scope.Items.post(item).then(function(item){
+                    $scope.items.push(item);
+                });
             }
-        }).then(load);
+        });
     }
 
     $scope.addItem = function(){
@@ -37,10 +40,11 @@ angular.module('app').controller('ItemsCtrl', function($scope, $modal, Restangul
     };
 
     $scope.removeItem = function(item){
-        item.remove().then(load);
+        item.remove().then(function(){
+            _.remove($scope.items, { '_id': item._id });
+        });
     };
 
-    load();
 });
 
 angular.module('app').controller('EditItemCtrl', function ($scope, $modalInstance, item) {
