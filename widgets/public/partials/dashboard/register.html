@@ -1,0 +1,42 @@
+<!-- Company Registration modal -->
+<div class="modal-header">
+    <h3>Register your company for free</h3>
+</div>
+<div class="modal-body">
+    <form name="registrationForm" novalidate>
+        <div class="control-group">
+            <label for="name"><strong>Company details</strong></label>
+            <input id="name" name="name" type="text" placeholder="Enter company name" ng-model="company.details.name" />
+            <select id="size" name="size" ng-model="company.details.size" >
+                <option value="" disabled="disabled" selected="selected">Select company size</option>
+                <option value="5">1-10 (individual/micro)</option>
+                <option value="50">10-100 (small-sized)</option>
+                <option value="250">100-500 (mid-sized)</option>
+                <option value="1000">500+ (large enterprise)</option>
+            </select>
+            <br>
+            <div class="input-prepend">
+                <span class="add-on">http://</span>
+                <input id="website" name="website" type="text" placeholder="Enter company website" ng-model="company.details.website" /><br>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="email"><strong>Contact information</strong></label>
+            <input id="email" name="email" type="email" placeholder="Enter email address" ng-model="company.details.contact.email" required />
+            <span class="help-inline" ng-show="registrationForm.$dirty && registrationForm.email.$error.required">This field is required.</span>
+            <span class="help-block">Must be valid. No spam from us, promise.</span>
+        </div>
+        <div class="control-group">
+            <label for="key"><strong>Your private instance</strong></label>
+            <div class="input-prepend input-append">
+                <span class="add-on">https://</span>
+                <input id="key" name="key" type="text" placeholder="e.g., universalexports" ng-model="company.key" ng-disabled="editionMode" required />
+                <span class="add-on">.app.tp.com</span>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-sm btn-primary" ng-click="save()" ng-disabled="registrationForm.$invalid">Save</button>
+    <button class="btn btn-sm btn-link" ng-click="cancel()">Cancel</button>
+</div>
