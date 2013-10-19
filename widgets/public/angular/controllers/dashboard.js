@@ -4,22 +4,20 @@ angular.module('app').controller('DashboardCtrl', function($scope){
 
     $scope.widgets=[
         {
+            id:0,
+            type: 'chat'
+        },
+        {
             id:1,
-            type: 'chat',
-            w: 100,
-            h: 100
+            type: 'chat'
         },
         {
             id:2,
-            type: 'sprint',
-            w: 200,
-            h: 200
+            type: 'sprint'
         },
         {
             id:3,
-            type: 'sprint',
-            w: 200,
-            h: 200
+            type: 'sprint'
         }
 
     ];

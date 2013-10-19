@@ -2,13 +2,13 @@
     <div class="flipper">
         <div class="widget-front">
             <div class="widget-heading">
-                Chat window
-                <button class="btn btn-default pull-right" ng-click="flipped = true">
-                    <i class="icon-cog"></i>
-                </button>
+                <span class="widget-title">Chat window</span>
+                <i class="icon-cog pull-right" title="Settings" ng-click="flipped = true"></i>
             </div>
             <div class="widget-body">
-                {{ widget }}
+                {{ widget }}<br>
+                id={{ id }}<br>
+                {{ nbUsers }} users connected.
             </div>
         </div>
         <div class="widget-back">
